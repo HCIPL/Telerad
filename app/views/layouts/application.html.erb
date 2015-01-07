@@ -16,9 +16,10 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<<<<<<< HEAD
 <body>
-
+<% if session[:user_id] %>
+          <%= link_to "Logout", logout_path, :method => :delete %>
+        <% end %>
 <% if flash[:color]== "valid" %>
     <div>
       <p class="alert alert-success"><%= flash[:notice]%></p>
@@ -28,8 +29,6 @@
       <p class="alert alert-danger"><%=flash[:notice]%></p>
     </div>
   <%end%>
-=======
->>>>>>> 0b3fcdc33e803c42f74b6b39fadd0424dd6a3e03
 
 <%= yield %>
 
