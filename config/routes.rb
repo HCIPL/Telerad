@@ -11,9 +11,14 @@ Telerad::Application.routes.draw do
   get 'comments/show'
 
   get 'studies/new'
+<<<<<<< HEAD
+=======
+
+  post 'emr_patient' => 'patients#emr'
+>>>>>>> master
 
   resources :users
   resources :patients
-  resources :studies, only: [:new, :create]
+  resources :studies
 
 end

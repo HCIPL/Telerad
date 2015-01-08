@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user
+  before_filter :authenticate_user, except: [:new, :create]
+
+  def index
+    @patient = Patient.new
+    @patients = current_user.patients.uniq
+  end
 
   def new
     @user = User.new
@@ -9,13 +14,16 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+<<<<<<< HEAD
       flash[:notice] = "You signed up successfully"
       flash[:color]= "valid"
+=======
+      flash[:success] = "You signed up successfully"
+>>>>>>> master
       log_in @user
       redirect_to(:controller => 'users', :action => 'index')
     else
-      flash[:notice] = "Form is invalid"
-      flash[:color]= "invalid"
+      flash[:success] = "Form is invalid"
       render "new"
     end
 
@@ -27,11 +35,8 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def index
-    @patients = current_user.patients
-  end
-
   def show
+    
   end
 
   private
@@ -40,3 +45,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :gateway, :gateway_type, :password, :password_confirmation)
   end
 end
+
